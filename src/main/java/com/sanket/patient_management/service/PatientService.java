@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.sanket.patient_management.ExceptionHandler.ElementNotFoundById;
 import com.sanket.patient_management.ExceptionHandler.EmailAlreadyExistsException;
 import com.sanket.patient_management.dto.PatientRequestDTO;
 import com.sanket.patient_management.dto.PatientResponseDTO;
@@ -40,7 +41,7 @@ public class PatientService {
     public PatientResponseDTO updatePatientById(String id, PatientRequestDTO patientRequestDTO) {
         UUID patientId = UUID.fromString(id);
         Patient existing = patientRepository.findById(patientId)
-                .orElseThrow(() -> new RuntimeException("Patient not found with id: " + id));
+                .orElseThrow(() -> new ElementNotFoundById("Patient not found with id: " + id));
 
         // update fields
         existing.setName(patientRequestDTO.getName());

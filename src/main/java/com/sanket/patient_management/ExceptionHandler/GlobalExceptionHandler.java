@@ -36,4 +36,12 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
+
+    @ExceptionHandler(ElementNotFoundById.class)
+    public ResponseEntity<Map<String, String>> handleElementNotFoundById(ElementNotFoundById ex) {
+        log.warn("Element not found: {}", ex.getMessage());
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
 }
