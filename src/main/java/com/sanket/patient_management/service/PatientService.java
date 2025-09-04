@@ -38,17 +38,19 @@ public class PatientService {
         return PatientMapper.toDTO(newPatient);
     }
 
-    public PatientResponseDTO updatePatientById(String id, PatientRequestDTO patientRequestDTO) {
-        UUID patientId = UUID.fromString(id);
+    public PatientResponseDTO updatePatientById(UUID id, PatientRequestDTO patientRequestDTO) {
+        UUID patientId = id;
         Patient existing = patientRepository.findById(patientId)
                 .orElseThrow(() -> new ElementNotFoundById("Patient not found with id: " + id));
+        if (patientRepository.existsByEmail(patientRequestDTO.getEmail())) {
+            // update fields
+            existing.setName(patientRequestDTO.getName());
+            existing.setEmail(patientRequestDTO.getEmail());
+            existing.setAddress(patientRequestDTO.getAddress());
+            existing.setDateOfBirth(java.time.LocalDate.parse(patientRequestDTO.getDateOfBirth()));
+            existing.setDateOfRegistration(java.time.LocalDate.parse(patientRequestDTO.getRegisteredDate()));
 
-        // update fields
-        existing.setName(patientRequestDTO.getName());
-        existing.setEmail(patientRequestDTO.getEmail());
-        existing.setAddress(patientRequestDTO.getAddress());
-        existing.setDateOfBirth(java.time.LocalDate.parse(patientRequestDTO.getDateOfBirth()));
-        existing.setDateOfRegistration(java.time.LocalDate.parse(patientRequestDTO.getRegisteredDate()));
+        }
 
         Patient updated = patientRepository.save(existing);
         return PatientMapper.toDTO(updated);
