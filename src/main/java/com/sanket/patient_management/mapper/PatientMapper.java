@@ -1,5 +1,6 @@
 package com.sanket.patient_management.mapper;
 
+import com.sanket.patient_management.DTO.PatientRequestDTO;
 import com.sanket.patient_management.DTO.PatientResponseDTO;
 import com.sanket.patient_management.model.Patient;
 
@@ -20,7 +21,7 @@ public class PatientMapper {
     }
 
     // Convert DTO → Entity
-    public static Patient toEntity(PatientResponseDTO patientDTO) {
+    public static Patient toEntity(PatientRequestDTO patientDTO) {
         if (patientDTO == null) {
             return null;
         }
@@ -29,7 +30,7 @@ public class PatientMapper {
                 patientDTO.getName(),
                 patientDTO.getEmail(),
                 patientDTO.getAddress(),
-                java.time.LocalDate.parse(patientDTO.getDateOfBirth()),
+                java.time.LocalDate.parse(patientDTO.getDate_of_birth()),
                 java.time.LocalDate.now()
         );
     }
