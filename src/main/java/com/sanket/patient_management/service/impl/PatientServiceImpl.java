@@ -9,7 +9,7 @@ import com.sanket.patient_management.service.PatientService;
 
 public class PatientServiceImpl implements PatientService {
 
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -19,8 +19,14 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientResponseDTO> getAllPatients() {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream()
-                .map(patient -> new PatientResponseDTO(patient.getId(), patient.getName(), patient.getEmail(), patient.getAddress(), patient.getDate_of_birth().toString()))
-                .toList();
+                .map(patient -> new PatientResponseDTO(
+                patient.getId().toString(),
+                patient.getName(),
+                patient.getEmail(),
+                patient.getAddress(),
+                patient.getDate_of_birth() != null ? patient.getDate_of_birth().toString() : null
+        )).toList();
+
     }
 
 }
