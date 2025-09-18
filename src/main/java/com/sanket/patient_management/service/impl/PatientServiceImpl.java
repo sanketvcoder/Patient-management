@@ -2,11 +2,15 @@ package com.sanket.patient_management.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.sanket.patient_management.DTO.PatientResponseDTO;
+import com.sanket.patient_management.mapper.PatientMapper;
 import com.sanket.patient_management.model.Patient;
 import com.sanket.patient_management.repository.PatientRepository;
 import com.sanket.patient_management.service.PatientService;
 
+@Service
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
@@ -19,14 +23,7 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientResponseDTO> getAllPatients() {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream()
-                .map(patient -> new PatientResponseDTO(
-                patient.getId().toString(),
-                patient.getName(),
-                patient.getEmail(),
-                patient.getAddress(),
-                patient.getDate_of_birth() != null ? patient.getDate_of_birth().toString() : null
-        )).toList();
-
+                .map(patient -> PatientMapper.toDTO(patient)).toList();
     }
 
 }
