@@ -1,5 +1,7 @@
 package com.sanket.patient_management.DTO;
 
+import com.sanket.patient_management.DTO.validators.CreatePatientValidationGroup;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +23,7 @@ public class PatientRequestDTO {
     @NotBlank(message = "Date of Birth is mandatory")
     private String date_of_birth;
 
-    @NotNull(message = "Registered Date is mandatory")
+    @NotBlank(groups = CreatePatientValidationGroup.class, message = "Registered Date is mandatory")
     private String registered_date;
 
     public PatientRequestDTO() {

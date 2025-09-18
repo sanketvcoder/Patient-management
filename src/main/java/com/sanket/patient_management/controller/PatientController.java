@@ -15,4 +15,6 @@ public interface PatientController {
     ResponseEntity<PatientResponseDTO> createPatient(PatientRequestDTO patientDTO);
 
     ResponseEntity<PatientResponseDTO> updatePatient(UUID id, PatientRequestDTO patientDTO);
+
+    ResponseEntity<String> getPatientById(UUID id);
 }
