@@ -1,6 +1,7 @@
 package com.sanket.patient_management.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 
@@ -12,4 +13,6 @@ public interface PatientController {
     ResponseEntity<List<PatientResponseDTO>> getAllPatients();
 
     ResponseEntity<PatientResponseDTO> createPatient(PatientRequestDTO patientDTO);
+
+    ResponseEntity<PatientResponseDTO> updatePatient(UUID id, PatientRequestDTO patientDTO);
 }
