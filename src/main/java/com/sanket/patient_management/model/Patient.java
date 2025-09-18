@@ -15,9 +15,8 @@ import jakarta.validation.constraints.NotNull;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
-
     @NotNull
     private String name;
 
@@ -27,73 +26,73 @@ public class Patient {
     private String email;
 
     @NotNull
-    private String Address;
+    private String address;
 
     @NotNull
-    private LocalDate dateOfBirth;
+    private LocalDate date_of_birth;
 
     @NotNull
-    private LocalDate dateOfRegistration;
+    private LocalDate registered_date;
 
     public Patient() {
     }
 
     public Patient(UUID id, @NotNull String name, @NotNull @Email String email, @NotNull String address,
-            @NotNull LocalDate dateOfBirth, @NotNull LocalDate dateOfRegistration) {
+            @NotNull LocalDate date_of_birth, @NotNull LocalDate registered_date) {
         this.id = id;
         this.name = name;
         this.email = email;
-        Address = address;
-        this.dateOfBirth = dateOfBirth;
-        this.dateOfRegistration = dateOfRegistration;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setDateOfRegistration(LocalDate dateOfRegistration) {
-        this.dateOfRegistration = dateOfRegistration;
+        this.address = address;
+        this.date_of_birth = date_of_birth;
+        this.registered_date = registered_date;
     }
 
     public UUID getId() {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public LocalDate getDateOfRegistration() {
-        return dateOfRegistration;
+    public LocalDate getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(LocalDate date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public LocalDate getRegistered_date() {
+        return registered_date;
+    }
+
+    public void setRegistered_date(LocalDate registered_date) {
+        this.registered_date = registered_date;
     }
 
 }

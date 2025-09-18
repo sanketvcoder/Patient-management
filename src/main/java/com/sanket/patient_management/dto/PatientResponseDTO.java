@@ -1,4 +1,4 @@
-package com.sanket.patient_management.dto;
+package com.sanket.patient_management.DTO;
 
 public class PatientResponseDTO {
 
@@ -8,55 +8,54 @@ public class PatientResponseDTO {
     private String address;
     private String dateOfBirth;
 
-    public PatientResponseDTO(String address, String dateOfBirth, String email, String id, String name) {
-        this.address = address;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.id = id;
-        this.name = name;
+    public PatientResponseDTO() {
     }
 
-    public PatientResponseDTO() {
+    public PatientResponseDTO(String id, String name, String email, String address, String dateOfBirth) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
 }
